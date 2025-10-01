@@ -1,0 +1,19 @@
+{
+  "name": "express-intro",
+  "version": "1.0.0",
+  "description": "Introduction to Express JS",
+  "license": "ISC",
+  "author": "Aashir Siddiqui",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
