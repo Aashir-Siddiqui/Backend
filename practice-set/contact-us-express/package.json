@@ -1,0 +1,19 @@
+{
+  "name": "express-contact-form",
+  "version": "1.0.0",
+  "description": "Intro express practice set",
+  "license": "ISC",
+  "author": "Aashir Siddiqui",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
