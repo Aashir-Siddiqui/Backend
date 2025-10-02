@@ -1,5 +1,4 @@
 const express = require("express");
-const { url } = require("inspector");
 
 const app = express();
 
