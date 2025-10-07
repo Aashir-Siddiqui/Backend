@@ -74,7 +74,6 @@ exports.postRemoveFromFavourites = (req, res, next) => {
   Favourite.deleteById(homeId)
     .then((result) => {
       console.log("Removed from favourites", result);
-      res.redirect("/favourites");
     })
     .catch((err) => {
       console.log("Error removing from favourites", err);
