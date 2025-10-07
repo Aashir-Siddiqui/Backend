@@ -1,0 +1,252 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-50">
+  <%- include('../partials/nav') %>
+  
+  <main class="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
+    
+    <!-- Back Button -->
+    <div class="mb-6">
+      <a href="/homes" class="inline-flex items-center space-x-2 text-gray-600 hover:text-red-600 font-semibold transition duration-300">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        <span>Back to Listings</span>
+      </a>
+    </div>
+
+    <!-- Main Card -->
+    <div class="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-200">
+      
+      <!-- Header Section with Gradient -->
+      <div class="bg-gradient-to-r from-red-600 to-red-500 p-8 md:p-10 text-white">
+        <div class="flex items-center space-x-4 mb-4">
+          <div class="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold">
+              <%= editing ? "Edit Your Property" : "List Your Property" %>
+            </h1>
+            <p class="text-red-100 mt-1 text-lg">
+              <%= editing ? "Update your listing details" : "Share your space with the world" %>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Progress Steps (for new listings) -->
+        <% if (!editing) { %>
+        <div class="mt-6 flex items-center space-x-2">
+          <div class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+            <div class="w-2 h-2 bg-white rounded-full"></div>
+            <span class="text-sm font-semibold">Step 1 of 1</span>
+          </div>
+          <span class="text-red-100">Property Details</span>
+        </div>
+        <% } %>
+      </div>
+
+      <!-- Form Section -->
+      <form action="<%= editing ? '/host/edit-home' : '/host/add-home' %>" method="POST" class="p-8 md:p-10">
+        
+        <% if (editing && home) { %>
+        <input type="hidden" name="homeId" value="<%= home._id %>" />
+        <% } %>
+
+        <div class="space-y-6">
+          
+          <!-- Property Name -->
+          <div class="group">
+            <label for="houseName" class="block text-sm font-bold text-gray-700 mb-2 flex items-center">
+              <div class="bg-red-100 p-1.5 rounded-lg mr-2">
+                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </div>
+              Property Name
+              <span class="text-red-500 ml-1">*</span>
+            </label>
+            <input
+              id="houseName"
+              value="<%= editing && home ? home.houseName : '' %>"
+              name="houseName"
+              type="text"
+              placeholder="e.g., Cozy Downtown Apartment"
+              required
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition group-hover:border-gray-400"
+            />
+          </div>
+
+          <!-- Location -->
+          <div class="group">
+            <label for="address" class="block text-sm font-bold text-gray-700 mb-2 flex items-center">
+              <div class="bg-red-100 p-1.5 rounded-lg mr-2">
+                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              Location
+              <span class="text-red-500 ml-1">*</span>
+            </label>
+            <input
+              id="address"
+              value="<%= editing && home ? home.houseAddress : '' %>"
+              name="address"
+              type="text"
+              placeholder="e.g., 123 Main Street, Karachi, Pakistan"
+              required
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition group-hover:border-gray-400"
+            />
+          </div>
+
+          <!-- Photo URL -->
+          <div class="group">
+            <label for="photoUrl" class="block text-sm font-bold text-gray-700 mb-2 flex items-center">
+              <div class="bg-red-100 p-1.5 rounded-lg mr-2">
+                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              Photo URL
+              <span class="text-red-500 ml-1">*</span>
+            </label>
+            <input
+              id="photoUrl"
+              value="<%= editing && home ? home.photoUrl : '' %>"
+              name="photoUrl"
+              type="url"
+              placeholder="e.g., https://example.com/photo.jpg"
+              required
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition group-hover:border-gray-400"
+            />
+            <p class="mt-2 text-sm text-gray-500">Add a high-quality image URL of your property</p>
+          </div>
+
+          <!-- Description -->
+          <div class="group">
+            <label for="description" class="block text-sm font-bold text-gray-700 mb-2 flex items-center">
+              <div class="bg-red-100 p-1.5 rounded-lg mr-2">
+                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                </svg>
+              </div>
+              Description
+              <span class="text-red-500 ml-1">*</span>
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              placeholder="Describe your property, amenities, nearby attractions, and what makes it special..."
+              required
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition group-hover:border-gray-400 resize-none"
+            ><%= editing && home ? home.description : '' %></textarea>
+            <p class="mt-2 text-sm text-gray-500">Min 50 characters. Be detailed and honest.</p>
+          </div>
+
+          <!-- Price and Rating Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <!-- Price -->
+            <div class="group">
+              <label for="price" class="block text-sm font-bold text-gray-700 mb-2 flex items-center">
+                <div class="bg-red-100 p-1.5 rounded-lg mr-2">
+                  <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                Price per Night
+                <span class="text-red-500 ml-1">*</span>
+              </label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-semibold">$</span>
+                <input
+                  id="price"
+                  value="<%= editing && home ? home.housePrice : '' %>"
+                  name="price"
+                  type="number"
+                  placeholder="50"
+                  min="1"
+                  required
+                  class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition group-hover:border-gray-400"
+                />
+              </div>
+            </div>
+
+            <!-- Rating -->
+            <div class="group">
+              <label for="rating" class="block text-sm font-bold text-gray-700 mb-2 flex items-center">
+                <div class="bg-red-100 p-1.5 rounded-lg mr-2">
+                  <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                </div>
+                Rating
+                <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input
+                id="rating"
+                value="<%= editing && home ? home.rating : '' %>"
+                name="rating"
+                type="number"
+                placeholder="4.5"
+                min="1"
+                max="5"
+                step="0.1"
+                required
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition group-hover:border-gray-400"
+              />
+              <p class="mt-2 text-sm text-gray-500">1.0 to 5.0</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-10 pt-6 border-t border-gray-200">
+          <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold py-4 px-6 rounded-xl transition duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 text-lg"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span><%= editing ? "Update Property" : "Publish Property" %></span>
+          </button>
+          
+          <% if (editing) { %>
+          <button
+            type="button"
+            onclick="if(confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) window.location.href='/homes'"
+            class="w-full mt-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-xl transition duration-300"
+          >
+            Cancel
+          </button>
+          <% } %>
+        </div>
+      </form>
+    </div>
+
+    <!-- Help Section -->
+    <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
+      <div class="flex items-start space-x-3">
+        <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <div>
+          <h3 class="font-bold text-gray-900 mb-1">Listing Tips</h3>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>• Use high-quality, well-lit photos</li>
+            <li>• Write a descriptive, accurate property name</li>
+            <li>• Set competitive pricing for your area</li>
+            <li>• Be honest about your property's features</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
