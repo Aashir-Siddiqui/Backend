@@ -1,72 +1,102 @@
 <%- include('../partials/head') %>
 </head>
-<body class="bg-gray-50">
+<body class="bg-white text-gray-800">
   <%- include('../partials/nav') %>
   
-  <!-- Hero Section -->
-  <div class="bg-gradient-to-r from-red-600 to-red-500 text-white py-12 md:py-16">
-    <div class="container mx-auto px-4 text-center">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Find Your Perfect Stay</h1>
-      <p class="text-lg md:text-xl text-red-100 mb-6">Discover unique homes and experiences around the world</p>
+  <div class="bg-white border-b border-gray-100 shadow-sm pt-4 pb-8 md:pt-6 md:pb-12">
+    <div class="container mx-auto px-4 text-center max-w-7xl">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
+        Find Your Perfect Stay
+      </h1>
+      <p class="text-lg md:text-xl text-gray-500 mb-8">
+        Discover unique homes and experiences around the world
+      </p>
       
-      <!-- Search Bar -->
-      <div class="max-w-4xl mx-auto bg-white rounded-full shadow-2xl p-2 flex flex-col sm:flex-row gap-2">
-        <div class="flex-1 flex items-center px-4 py-2">
-          <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-          <input type="text" placeholder="Search destinations..." class="w-full border-0 focus:ring-0 text-gray-700 placeholder-gray-400">
+      <form class="max-w-4xl mx-auto bg-white rounded-full border border-gray-200 shadow-xl p-1 flex flex-col sm:flex-row items-center justify-between transition-all duration-300 hover:shadow-2xl">
+        
+        <div class="flex-1 w-full sm:w-auto px-4 py-2 border-b sm:border-b-0 sm:border-r border-gray-100">
+          <label for="destination" class="block text-xs font-bold text-gray-900 mb-1 text-left">Where</label>
+          <input 
+            type="text" 
+            id="destination"
+            placeholder="Search destinations..." 
+            class="w-full border-0 p-0 focus:ring-0 text-gray-700 placeholder-gray-400 font-semibold text-sm"
+          >
         </div>
-        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-full transition duration-300 flex items-center justify-center space-x-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        
+        <div class="w-full sm:w-auto px-4 py-2 border-b sm:border-b-0 sm:border-r border-gray-100">
+          <label for="checkin" class="block text-xs font-bold text-gray-900 mb-1 text-left">Check-in / Check-out</label>
+          <input 
+            type="text" 
+            id="checkin"
+            placeholder="Add dates" 
+            class="w-full border-0 p-0 focus:ring-0 text-gray-700 placeholder-gray-400 font-semibold text-sm"
+          >
+        </div>
+        
+        <div class="w-full sm:w-auto px-4 py-2">
+          <label for="guests" class="block text-xs font-bold text-gray-900 mb-1 text-left">Who</label>
+          <input 
+            type="number" 
+            id="guests"
+            placeholder="Add guests" 
+            class="w-full border-0 p-0 focus:ring-0 text-gray-700 placeholder-gray-400 font-semibold text-sm"
+          >
+        </div>
+
+        <button class="bg-red-600 hover:bg-red-700 text-white font-bold h-12 w-12 sm:w-auto sm:px-8 sm:h-auto rounded-full transition duration-300 flex items-center justify-center space-x-2 m-2 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300">
+          <svg class="w-5 h-5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
-          <span>Search</span>
+          <span class="hidden sm:inline">Search</span>
         </button>
-      </div>
+      </form>
     </div>
   </div>
-
+  
   <main class="container mx-auto px-4 py-8 md:py-12 max-w-7xl">
     
-    <!-- Filter Section -->
-    <div class="mb-8 flex flex-wrap gap-3 items-center justify-between">
+    <div class="mb-8 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between border-b pb-4">
+      
       <div class="flex flex-wrap gap-2">
-        <button class="px-4 py-2 bg-white border-2 border-red-500 text-red-600 font-semibold rounded-full hover:bg-red-50 transition duration-300">
+        <button class="px-4 py-2 bg-red-600 text-white font-semibold rounded-full shadow-md hover:bg-red-700 transition duration-300">
           All Homes
         </button>
-        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 transition duration-300">
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 hover:shadow-sm transition duration-300">
           Beachfront
         </button>
-        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 transition duration-300">
-          Mountains
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 hover:shadow-sm transition duration-300">
+          Amazing Views
         </button>
-        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 transition duration-300">
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 hover:shadow-sm transition duration-300">
+          Cabins
+        </button>
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 hover:shadow-sm transition duration-300 hidden sm:block">
           City Center
         </button>
       </div>
       
-      <div class="flex items-center space-x-3">
-        <span class="text-gray-600 font-semibold"><%= registerHomes.length %> properties</span>
-        <select class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500">
-          <option>Sort by</option>
+      <div class="flex items-center space-x-3 mt-3 md:mt-0">
+        <span class="text-gray-600 font-medium text-sm md:text-base"><%= registerHomes.length %> properties found</span>
+        <select class="border border-gray-300 rounded-xl px-3 py-2 text-sm text-gray-700 focus:ring-red-500 focus:border-red-500 transition duration-200">
+          <option>Sort by: Recommended</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
-          <option>Rating</option>
+          <option>Rating: High to Low</option>
         </select>
       </div>
     </div>
     
     <% if (registerHomes.length === 0) { %>
-      <div class="text-center py-16 bg-white rounded-2xl shadow-lg">
+      <div class="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100 shadow-inner">
         <div class="mb-6">
-          <svg class="w-32 h-32 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-16 h-16 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-gray-700 mb-2">No Properties Available</h3>
-        <p class="text-gray-600 mb-6">Be the first to list your property!</p>
-        <a href="/host/add-home" class="inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-lg hover:shadow-xl">
+        <h3 class="text-xl font-bold text-gray-700 mb-2">No Properties Match Your Search</h3>
+        <p class="text-gray-500 mb-6 max-w-md mx-auto">Try adjusting your filters or search terms. Be the first to list your property!</p>
+        <a href="/host/add-home" class="inline-flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-lg hover:shadow-xl">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
           </svg>
@@ -74,51 +104,40 @@
         </a>
       </div>
     <% } else { %>
-      <div class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div class="grid gap-6 md:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <% registerHomes.forEach(home => { %>
-          <a href="/homes/<%=home._id%>" class="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 transform hover:-translate-y-1">
+          <a href="/homes/<%=home._id%>" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-red-300 transform hover:-translate-y-1">
             
-            <!-- Photo Section -->
-            <div class="relative h-52 bg-gray-100 overflow-hidden">
+            <div class="relative h-48 sm:h-52 bg-gray-100 overflow-hidden">
               <img 
                 src="<%= home.photoUrl %>" 
                 alt="<%= home.houseName %>"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'"
               />
               
-              <!-- Favorite Button -->
               <%- include('../partials/favourite', {home: home}) %>
               
-              <!-- Rating Badge -->
-              <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg flex items-center space-x-1">
-                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+              <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg flex items-center space-x-1">
+                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                 </svg>
-                <span class="font-bold text-gray-900 text-sm"><%= home.rating %></span>
+                <span class="font-bold text-gray-900 text-sm"><%= home.rating || 'New' %></span>
               </div>
             </div>
 
-            <!-- Content Section -->
             <div class="p-4">
-              <!-- Location -->
-              <div class="flex items-start mb-2">
-                <svg class="w-4 h-4 text-gray-400 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                <span class="text-sm text-gray-600 line-clamp-1"><%= home.houseAddress %></span>
-              </div>
-              
-              <!-- Title -->
-              <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-red-600 transition-colors">
+              <h3 class="text-base font-semibold text-gray-900 mb-1 line-clamp-1 group-hover:text-red-600 transition-colors">
                 <%= home.houseName %>
               </h3>
+
+              <div class="flex items-start mb-2">
+                <span class="text-sm text-gray-500 line-clamp-1"><%= home.houseAddress %></span>
+              </div>
               
-              <!-- Price -->
-              <div class="flex items-baseline space-x-1 mt-3">
-                <span class="text-2xl font-bold text-gray-900">$<%= home.housePrice %></span>
-                <span class="text-sm text-gray-500">/ night</span>
+              <div class="flex items-baseline space-x-1 pt-1 border-t border-gray-50">
+                <span class="text-xl font-extrabold text-gray-900">$<%= home.price %></span>
+                <span class="text-sm text-gray-500 font-medium">/ night</span>
               </div>
             </div>
           </a>
@@ -127,16 +146,15 @@
     <% } %>
   </main>
 
-  <!-- CTA Section -->
-  <div class="bg-gradient-to-r from-red-600 to-red-500 py-16 mt-16">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Earn as a Host?</h2>
-      <p class="text-lg text-red-100 mb-8">Join thousands of hosts earning on Airbnb</p>
-      <a href="/host/add-home" class="inline-flex items-center space-x-2 bg-white text-red-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition duration-300 shadow-xl">
+  <div class="bg-gray-50 py-16 mt-16 border-t border-gray-100">
+    <div class="container mx-auto px-4 text-center max-w-7xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ready to Earn as a Host?</h2>
+      <p class="text-lg text-gray-500 mb-8">List your unique space and connect with travelers worldwide.</p>
+      <a href="/host/add-home" class="inline-flex items-center space-x-2 bg-red-600 text-white hover:bg-red-700 font-bold py-4 px-8 rounded-full transition duration-300 shadow-xl hover:shadow-2xl">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
-        <span>List Your Property</span>
+        <span>Start Hosting Today</span>
       </a>
     </div>
   </div>
