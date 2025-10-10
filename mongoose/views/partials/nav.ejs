@@ -15,7 +15,7 @@
           href="/"
           class="text-xl md:text-2xl font-extrabold tracking-wide text-red-600"
         >
-          airbnb<span class="text-gray-800 font-medium">Clone</span>
+          airbnb
         </a>
       </div>
 
@@ -23,115 +23,139 @@
         class="hidden md:flex space-x-1 lg:space-x-3 items-center text-sm font-semibold"
       >
         <% if(isLoggedIn) { %>
-        <li>
-          <a
-            href="/homes"
-            class="<%= currentPage === 'home' ? 'bg-gray-100 text-red-600 shadow-inner' : 'hover:bg-gray-100 text-gray-700' %> flex items-center py-2 px-4 rounded-full transition duration-200"
-          >
-            <span>Homes</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/bookings"
-            class="<%= currentPage === 'bookings' ? 'bg-gray-100 text-red-600 shadow-inner' : 'hover:bg-gray-100 text-gray-700' %> flex items-center py-2 px-4 rounded-full transition duration-200"
-          >
-            <span>Bookings</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/favourites"
-            class="<%= currentPage === 'favourites' ? 'bg-gray-100 text-red-600 shadow-inner' : 'hover:bg-gray-100 text-gray-700' %> flex items-center py-2 px-4 rounded-full transition duration-200"
-          >
-            <span>Favourites</span>
-          </a>
-        </li>
-        <li class="relative group">
-          <a
-            href="/host/host-home-list"
-            class="<%= currentPage && (currentPage === 'host-home' || currentPage === 'addHome') ? 'bg-red-600 text-white shadow-md' : 'border border-gray-300 text-gray-700 hover:bg-gray-100' %> flex items-center space-x-1 py-2 px-4 rounded-full transition duration-200"
-          >
-            <span>Host Tools</span>
-            <svg
-              class="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </a>
-          <ul
-            class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 z-10 py-1"
-          >
-            <li>
-              <a
-                href="/host/add-home"
-                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-t-lg"
-                >Add New Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="/host/host-home-list"
-                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-b-lg"
-                >My Listings</a
-              >
-            </li>
-          </ul>
-        </li>
+          <% if(user && user.userType === 'guest'){ %>
+              <li>
+                <a
+                  href="/homes"
+                  class="<%= currentPage === 'home' ? 'bg-gray-100 text-red-600 shadow-inner' : 'hover:bg-gray-100 text-gray-700' %> flex items-center py-2 px-4 rounded-full transition duration-200"
+                >
+                  <span>Homes</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/bookings"
+                  class="<%= currentPage === 'bookings' ? 'bg-gray-100 text-red-600 shadow-inner' : 'hover:bg-gray-100 text-gray-700' %> flex items-center py-2 px-4 rounded-full transition duration-200"
+                >
+                  <span>Bookings</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/favourites"
+                  class="<%= currentPage === 'favourites' ? 'bg-gray-100 text-red-600 shadow-inner' : 'hover:bg-gray-100 text-gray-700' %> flex items-center py-2 px-4 rounded-full transition duration-200"
+                >
+                  <span>Favourites</span>
+                </a>
+              </li>
+          <% } else { %>
+              <li class="relative group">
+                <a
+                  href="/host/host-home-list"
+                  class="<%= currentPage && (currentPage === 'host-home' || currentPage === 'addHome') ? 'bg-red-600 text-white shadow-md' : 'border border-gray-300 text-gray-700 hover:bg-gray-100' %> flex items-center space-x-1 py-2 px-4 rounded-full transition duration-200"
+                >
+                  <span>Host Tools</span>
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </a>
+                <ul
+                  class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 z-10 py-1"
+                >
+                  <li>
+                    <a
+                      href="/host/add-home"
+                      class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-t-lg"
+                      >Add New Home</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/host/host-home-list"
+                      class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-b-lg"
+                      >My Listings</a
+                    >
+                  </li>
+                </ul>
+              </li>
+          <% } %>
 
-        <li>
-          <form action="/logout" method="POST" class="m-0">
-            <button
-              type="submit"
-              class="bg-red-600 text-white hover:bg-red-700 flex items-center space-x-1 py-2 px-4 rounded-full transition duration-300 font-bold shadow-md"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-              <span>Logout</span>
-            </button>
-          </form>
-        </li>
+            <li>
+              <form action="/logout" method="POST" class="m-0">
+                <button
+                  type="submit"
+                  class="bg-red-600 text-white hover:bg-red-700 flex items-center space-x-1 py-2 px-4 rounded-full transition duration-300 font-bold shadow-md"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  <span>Logout</span>
+                </button>
+              </form>
+            </li>
         <% } else { %>
-        <li>
-          <a
-            href="/login"
-            class="border border-gray-300 text-gray-700 hover:bg-gray-100 flex items-center space-x-1 py-2 px-4 rounded-full transition duration-300 font-bold shadow-sm"
-          >
-            <svg
-              class="w-5 h-5 text-red-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-              />
-            </svg>
-            <span>Login</span>
-          </a>
-        </li>
+              <li>
+                <a
+                  href="/login"
+                  class="border border-gray-300 text-gray-700 hover:bg-gray-100 flex items-center space-x-1 py-2 px-4 rounded-full transition duration-300 font-bold shadow-sm"
+                >
+                  <svg
+                    class="w-5 h-5 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  <span>Login</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/signup"
+                  class="border border-gray-300 text-gray-700 hover:bg-gray-100 flex items-center space-x-1 py-2 px-4 rounded-full transition duration-300 font-bold shadow-sm"
+                >
+                  <svg
+                    class="w-5 h-5 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  <span>Sign Up</span>
+                </a>
+              </li>
         <% } %>
       </ul>
 
@@ -185,174 +209,205 @@
     </div>
 
     <ul class="p-4 space-y-2 font-medium">
+
       <% if(isLoggedIn) { %>
-      <li>
-        <div
-          class="px-4 pb-4 border-b border-gray-100 mb-2 text-sm text-gray-500"
-        >
-          Welcome, <%= user.username %>
-        </div>
-      </li>
-
-      <li>
-        <a
-          href="/"
-          class="<%= currentPage === 'home' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
-          </svg>
-          <span>Homes</span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="/bookings"
-          class="<%= currentPage === 'bookings' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-            />
-          </svg>
-          <span>Bookings</span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="/favourites"
-          class="<%= currentPage === 'favourites' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            />
-          </svg>
-          <span>Favourites</span>
-        </a>
-      </li>
-
-      <li class="border-t border-gray-100 pt-2 mt-2">
-        <a
-          href="/host/add-home"
-          class="<%= currentPage === 'addHome' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>List Your Home</span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="/host/host-home-list"
-          class="<%= currentPage === 'host-home' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-            />
-          </svg>
-          <span>My Listings</span>
-        </a>
-      </li>
-
-      <li>
-        <form
-          action="/logout"
-          method="POST"
-          class="m-0 pt-2 border-t border-gray-100"
-        >
-          <button
-            type="submit"
-            class="w-full bg-red-600 text-white hover:bg-red-700 flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200 font-bold shadow-md cursor-pointer"
-          >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <li>
+            <div
+              class="px-4 pb-4 border-b border-gray-100 mb-2 text-sm text-gray-500"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-            <span>Logout</span>
-          </button>
-        </form>
-      </li>
+              Welcome, <%= user.email %>
+            </div>
+          </li>
+
+        <% if(user && user.userType === 'guest') { %>
+
+            <li>
+              <a
+                href="/"
+                class="<%= currentPage === 'home' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+                <span>Homes</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/bookings"
+                class="<%= currentPage === 'bookings' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  />
+                </svg>
+                <span>Bookings</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/favourites"
+                class="<%= currentPage === 'favourites' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+                <span>Favourites</span>
+              </a>
+            </li>
+
+        <% } else { %>
+
+            <li class="border-t border-gray-100 pt-2 mt-2">
+              <a
+                href="/host/add-home"
+                class="<%= currentPage === 'addHome' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>List Your Home</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="/host/host-home-list"
+                class="<%= currentPage === 'host-home' ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' %> flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  />
+                </svg>
+                <span>My Listings</span>
+              </a>
+            </li>
+
+        <% } %>
+
+          <li>
+            <form
+              action="/logout"
+              method="POST"
+              class="m-0 pt-2 border-t border-gray-100"
+            >
+              <button
+                type="submit"
+                class="w-full bg-red-600 text-white hover:bg-red-700 flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200 font-bold shadow-md cursor-pointer"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
+                <span>Logout</span>
+              </button>
+            </form>
+          </li>
+
       <% } else { %>
-      <li>
-        <a
-          href="/login"
-          class="bg-red-600 text-white hover:bg-red-700 flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200 font-bold shadow-md"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-            />
-          </svg>
-          <span>Login / Sign Up</span>
-        </a>
-      </li>
+
+          <li>
+            <a
+              href="/login"
+              class="bg-red-600 text-white hover:bg-red-700 flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200 font-bold shadow-md"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                />
+              </svg>
+              <span>Login</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/signup"
+              class="bg-red-600 text-white hover:bg-red-700 flex items-center space-x-3 py-3 px-4 rounded-lg transition duration-200 font-bold shadow-md"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                />
+              </svg>
+              <span>Sign Up</span>
+            </a>
+          </li>
+
       <% } %>
     </ul>
   </div>
